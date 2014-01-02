@@ -1,0 +1,150 @@
+#---------------------------------------------------------------------------------
+#
+#                       Configuration file for HILEX
+#
+#             Usage: File for porting CPP files from DOS to UNIX
+#
+#                               by Dvorka
+#
+#---------------------------------------------------------------------------------
+
+Setup( "TRANSLATION" )
+{
+ Output    ="NO_ENCAPS";  # HTML_PAGE or NO_ENCAPS or HTML_TABLE
+
+ CRLF      ="FALSE";      # add CRs to output ( Unix LF, Dos CRLF )
+ HtmlOutput="FALSE";      # convert < to &lt; ...
+}
+
+#---------------------------------------------------------------------------------
+
+Element( "farmalloc -> malloc" )
+{
+# Descr="farmalloc";
+ Descr="(";
+
+ Action="REPLACE";
+
+ Raw="malloc";
+}
+
+#---------------------------------------------------------------------------------
+
+Element( "FAR away" )
+{
+ Descr="far";
+
+ Action="REMOVE";
+}
+
+#---------------------------------------------------------------------------------
+
+Element( "KEYWORDS" )
+{
+ Descr="(asm)|(auto)|(break)|(case)|(cdecl)|(char)|(class)|(const)|";
+ Descr="(continue)|(_cs)|(default)|(delete)|(do)|(double)|(_ds)|(else)|";
+ Descr="(enum)|(_es)|(_export)|(extern)|(far)|(float)|(for)|(friend)|";
+ Descr="(goto)|(huge)|(if)|(inline)|(int)|(interrupt)|(_loadds)|(long)|";
+ Descr="(near)|(new)|(operator)|(pascal)|(private)|(protected)|(public)|";
+ Descr="(register)|(return)|(_saveregs)|(_seg)|(short)|(signed)|(sizeof)|";
+ Descr="(ss)|(static)|(struct)|(switch)|(template)|(this)|(typedef)|";
+ Descr="(union)|(unsigned)|(virtual)|(void)|(volatile)|(while)";
+
+ Action="NO";
+}
+
+#---------------------------------------------------------------------------------
+
+Element( "IDENTIFIER" )
+{
+ Descr  ="[A-Za-z_][A-Za-z_0-9]*";
+
+ Action="NO";
+}
+
+#---------------------------------------------------------------------------------
+
+Element( "SYMBOL" )
+{
+ Descr  ="\.|;|,|:|-|=|^|&|\?|<|>|%|!|~|\+|/|\*|\[|\]|\{|\}|\||\(|\)";
+
+ Action="NO";
+}
+
+#---------------------------------------------------------------------------------
+
+Element( "PREPROCESOR" )
+{
+ Descr="#([^\n]|(\\\n))*\n";
+
+ Action="NO";
+}
+
+#---------------------------------------------------------------------------------
+
+Element( "C COMMENTS" )
+{
+ Descr="/\*((\*+[^/])|([^\*]))*\*+/";
+
+ Action="NO";
+}
+
+#---------------------------------------------------------------------------------
+
+Element( "C++ COMMENTS" )
+{
+ Descr="//[^\n]*\n";
+
+ Action="NO";
+}
+
+#---------------------------------------------------------------------------------
+
+Element( "STRING" )
+{
+ Descr="\"(([^\"])|(\\"))*\"";
+
+ Action="NO";
+}
+
+#---------------------------------------------------------------------------------
+
+Element( "CHARACTER CONSTANT" )
+{
+ Descr="'(.)|(\\.)'";
+
+ Action="NO";
+}
+
+#---------------------------------------------------------------------------------
+
+Element( "DECIMAL CONSTANT" )
+{
+ Descr="[0-9]+[Uu]?[Ll]?";
+
+ Action="NO";
+}
+
+#---------------------------------------------------------------------------------
+
+Element( "HEXA CONSTANT" )
+{
+ Descr="0[xX][0-9A-Fa-f]+[Uu]?[Ll]?";
+
+ Action="NO";
+}
+
+#---------------------------------------------------------------------------------
+
+Element( "FLOAT CONSTANT" )
+{
+ Descr="([0-9]+\.[0-9]*[fF]?[Ll]?)|([0-9]+[fF]?[Ll]?)|";
+ Descr="([0-9]+\.[0-9]*[Ee]-?\+?[0-9]+[fF]?[Ll]?)";
+
+ Action="NO";
+}
+
+#---------------------------------------------------------------------------------
+
+
+

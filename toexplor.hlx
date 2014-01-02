@@ -1,0 +1,52 @@
+#---------------------------------------------------------------------------------
+#
+#                       Configuration file for LITESTEP switching
+#				Shell => Explorer
+#
+#                                  by Dvorka
+#
+#---------------------------------------------------------------------------------
+
+Setup( "TRANSLATION")
+{
+ Output         ="NO_ENCAPS";   # HTML_PAGE or HTML_TABLE or NO_ENCAPS
+
+ CRLF           ="FALSE";       # add CRs to output ( Unix hates them )
+ HtmlOutput     ="FALSE";       # convert < to &lt; ...
+}
+
+#---------------------------------------------------------------------------------
+
+Setup( "ENCAPSULATION" )
+{
+ Face_font ="COURIER NEW";
+ Title     ="HILEX translated source";
+ BaseColor ="#000080";
+ BaseSize  ="+1";
+ BgColor   ="#606060";
+}
+
+#---------------------------------------------------------------------------------
+
+Element( "Line where shell is specified" )
+{
+ Descr="shell[^\n]*\n";
+
+ Action="Replace";
+
+ # making new line
+ Raw="shell=Explorer.exe
+";
+
+}
+
+#---------------------------------------------------------------------------------
+
+Element( "Other lines" )
+{
+ Descr="[^\n]+";
+
+ Action="NO";
+}
+
+#---------------------------------------------------------------------------------

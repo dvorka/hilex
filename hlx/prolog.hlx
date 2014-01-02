@@ -1,0 +1,124 @@
+#---------------------------------------------------------------------------------
+#
+#                       Configuration file for HILEX
+#
+#                     Languague: Prolog ( not complete )
+#
+#                              by Dvorka
+#
+#---------------------------------------------------------------------------------
+
+Setup( "TRANSLATION" )
+{
+ Output    ="HTML_PAGE";  # HTML_PAGE or NO_ENCAPS or HTML_TABLE
+
+ CRLF      ="FALSE";      # add CRs to output ( Unix LF, Dos CRLF )
+ HtmlOutput="TRUE";       # convert < to &lt; ...
+}
+
+#---------------------------------------------------------------------------------
+
+Setup( "ENCAPSULATION" )
+{
+ Face_Font ="COURIER NEW";
+ Title     ="HILEX translated source";
+ BaseColor ="#FFFF00";
+ BaseSize  ="+1";
+ BgColor   ="#009900";
+}
+
+#---------------------------------------------------------------------------------
+
+Element( "KEYWORDS" )
+{
+ Descr="(fail)|(is)|(length)|(nl)|(not)|(read)|(write)|";
+ Descr="(name)|(append)|(dos)|(consult)|(edit_file)";
+
+ Action="ENCAPSULATE";
+
+ Color="#FFFFFF";
+ Bold ="TRUE";
+}
+
+#---------------------------------------------------------------------------------
+
+Element( "IDENTIFIER" )
+{
+ Descr  ="[A-Za-z_][A-Za-z_0-9]*";
+
+ Action="NO";
+
+ # default color
+}
+
+#---------------------------------------------------------------------------------
+
+Element( "PROLOG CUT" )
+{
+ Descr  ="!";
+
+ Action="ENCAPSULATE";
+
+ Color  ="RED";
+ Bold   ="TRUE";
+}
+
+#---------------------------------------------------------------------------------
+
+Element( "SYMBOL" )
+{
+ Descr  ="\\|\.|;|,|:|-|=|^|&|\?|<|>|%|~|\+|/|\*|\[|\]|\{|\}|\||\(|\)";
+
+ Action="ENCAPSULATE";
+
+ Raw_beg="<FONT COLOR=\"#FFFFFF\">";
+ Raw_end="</FONT>";
+}
+
+#---------------------------------------------------------------------------------
+
+Element( "STRING 1" )
+{
+ Descr="\'(([^\'])|(\\'))*\'";
+
+ Action="ENCAPSULATE";
+
+ Color="#00FFFF";
+}
+
+#---------------------------------------------------------------------------------
+
+Element( "STRING 2" )
+{
+ Descr="\"(([^\"])|(\\"))*\"";
+
+ Action="ENCAPSULATE";
+
+ Color="#00FFFF";
+}
+
+#---------------------------------------------------------------------------------
+
+Element( "COMMENTS" )
+{
+ Descr="%[^\n]*\n";
+
+ Action="ENCAPSULATE";
+
+ Color="BLACK";
+ Italic="TRUE";
+}
+
+#---------------------------------------------------------------------------------
+
+Element( "NUMBER" )
+{
+ Descr="[0-9]+)";
+
+ Action="ENCAPSULATE";
+
+ Color="#00FFFF";
+}
+
+#---------------------------------------------------------------------------------
+

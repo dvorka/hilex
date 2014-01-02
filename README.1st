@@ -1,0 +1,31 @@
+
+
+Obsah adresare:
+
+/DOC
+     - dokumentace k programu v HTML - ctete prosim jako prvni.
+       Obsahuje technicke poznamky, uzivatelskou i programatorkou DOC.
+
+/SOURCE
+     - zdrojaky
+
+/MAIN
+     - main projektu
+
+hilex.prj
+     - project file Borland C++ 3.1
+
+/HLX
+     - zaloha HLX souboru
+
+*.hlx
+     - HLX soubory ( viz. dokumentace )
+
+/EXE
+     - prelozeny program - NEPOUZIVEJTE ( mel jsem ho pouze na transport )
+
+
+                                        Martin Dvorak
+                                     ultradvorka@post.cz
+
+

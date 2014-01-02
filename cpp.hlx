@@ -1,0 +1,167 @@
+#---------------------------------------------------------------------------------
+#
+#                       Configuration file for HILEX
+#
+#                               Languague: C++
+#
+#                                  by Dvorka
+#
+#---------------------------------------------------------------------------------
+
+Setup( "TRANSLATION" )
+{
+ Output    ="HTML_PAGE";  # HTML_PAGE or NO_ENCAPS or HTML_TABLE
+
+ CRLF      ="FALSE";      # add CRs to output ( Unix LF, Dos CRLF )
+ HtmlOutput="TRUE";       # convert < to &lt; ...
+}
+
+#---------------------------------------------------------------------------------
+
+Setup( "ENCAPSULATION" )
+{
+ Face_Font ="COURIER NEW";
+ Title     ="HILEX translated source";
+ BaseColor ="#FFFF00";
+ BaseSize  ="+1";
+ BgColor   ="#000080";
+ Width     ="555";        # used when HTML_TABLE in other cases is ignored
+}
+
+#---------------------------------------------------------------------------------
+
+Element( "KEYWORDS" )
+{
+ Descr="(asm)|(auto)|(break)|(case)|(cdecl)|(char)|(class)|(const)|";
+ Descr="(continue)|(_cs)|(default)|(delete)|(do)|(double)|(_ds)|(else)|";
+ Descr="(enum)|(_es)|(_export)|(extern)|(far)|(float)|(for)|(friend)|";
+ Descr="(goto)|(huge)|(if)|(inline)|(int)|(interrupt)|(_loadds)|(long)|";
+ Descr="(near)|(new)|(operator)|(pascal)|(private)|(protected)|(public)|";
+ Descr="(register)|(return)|(_saveregs)|(_seg)|(short)|(signed)|(sizeof)|";
+ Descr="(ss)|(static)|(struct)|(switch)|(template)|(this)|(typedef)|";
+ Descr="(union)|(unsigned)|(virtual)|(void)|(volatile)|(while)";
+
+ Color="#FFFFFF";
+ Bold="TRUE";
+
+ Action="ENCAPSULATE";
+}
+
+#---------------------------------------------------------------------------------
+
+Element( "IDENTIFIER" )
+{
+ Descr  ="[A-Za-z_][A-Za-z_0-9]*";
+
+ Color="#FFFF00";
+
+ Action="ENCAPSULATE";
+}
+
+#---------------------------------------------------------------------------------
+
+Element( "SYMBOL" )
+{
+ Descr  ="\.|;|,|:|-|=|^|&|\?|<|>|%|!|~|\+|/|\*|\[|\]|\{|\}|\||\(|\)";
+
+ Raw_beg="<FONT COLOR=\"#FFFFFF\">";
+ Raw_end="</FONT>";
+
+ Action="ENCAPSULATE";
+}
+
+#---------------------------------------------------------------------------------
+
+Element( "PREPROCESOR" )
+{
+ Descr="#([^\n]|(\\\n))*\n";
+
+ Color="#00FF00";
+
+ Action="ENCAPSULATE";
+}
+
+#---------------------------------------------------------------------------------
+
+Element( "C COMMENTS" )
+{
+ Descr="/\*((\*+[^/])|([^\*]))*\*+/";
+
+ Color="#C0C0C0";
+ Italic="TRUE";
+
+ Action="ENCAPSULATE";
+}
+
+#---------------------------------------------------------------------------------
+
+Element( "C++ COMMENTS" )
+{
+ Descr="//[^\n]*\n";
+
+ Color="#C0C0C0";
+ Italic="TRUE";
+
+ Action="ENCAPSULATE";
+}
+
+#---------------------------------------------------------------------------------
+
+Element( "STRING" )
+{
+ Descr="\"(([^\"])|(\\"))*\"";
+
+ Color="#00FFFF";
+
+ Action="ENCAPSULATE";
+}
+
+#---------------------------------------------------------------------------------
+
+Element( "CHARACTER CONSTANT" )
+{
+ Descr="'(.)|(\\.)'";
+
+ Color="#00FFFF";
+
+ Action="ENCAPSULATE";
+}
+
+#---------------------------------------------------------------------------------
+
+Element( "DECIMAL CONSTANT" )
+{
+ Descr="[0-9]+[Uu]?[Ll]?";
+
+ Color="#00FFFF";
+
+ Action="ENCAPSULATE";
+}
+
+#---------------------------------------------------------------------------------
+
+Element( "HEXA CONSTANT" )
+{
+ Descr="0[xX][0-9A-Fa-f]+[Uu]?[Ll]?";
+
+ Color="#00FFFF";
+
+ Action="ENCAPSULATE";
+}
+
+#---------------------------------------------------------------------------------
+
+Element( "FLOAT CONSTANT" )
+{
+ Descr="([0-9]+\.[0-9]*[fF]?[Ll]?)|([0-9]+[fF]?[Ll]?)|";
+ Descr="([0-9]+\.[0-9]*[Ee]-?\+?[0-9]+[fF]?[Ll]?)";
+
+ Color="#00FFFF";
+
+ Action="ENCAPSULATE";
+}
+
+#---------------------------------------------------------------------------------
+
+
+

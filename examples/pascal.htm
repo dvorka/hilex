@@ -1,0 +1,136 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<HTML>
+
+<HEAD>
+ <!-- This Web page was converted to HMTL using HILEX -->
+ <TITLE>"HILEX translated source"</TITLE>
+</HEAD>
+
+<BODY TEXT="#FFFF00" BGCOLOR="#000080">
+ <PRE>
+ <FONT FACE="COURIER NEW" SIZE="+1" >
+<B><FONT COLOR="#FFFFFF">program</FONT></B> Hashing;
+
+<B><FONT COLOR="#FFFFFF">type</FONT></B>
+<I><FONT COLOR="#C0C0C0">{----------------------------------------------------------------------------}</FONT></I>
+   PClen = ^Clen; <I><FONT COLOR="#C0C0C0">{ clen tridene struktury }</FONT></I>
+   Clen = <B><FONT COLOR="#FFFFFF">record</FONT></B>
+           <I><FONT COLOR="#C0C0C0">{
+             struktura recordu ... }</FONT></I>
+             klic : integer;
+            <I><FONT COLOR="#C0C0C0">{
+             ...
+             ...
+             ...
+            }</FONT></I>
+          <B><FONT COLOR="#FFFFFF">end</FONT></B>;
+<I><FONT COLOR="#C0C0C0">{----------------------------------------------------------------------------}</FONT></I>
+   PTabTyp = ^TabTyp;
+   TabTyp = <B><FONT COLOR="#FFFFFF">record</FONT></B>
+             pravy      : PTabTyp;
+             zaznam     : PClen
+            <B><FONT COLOR="#FFFFFF">end</FONT></B>;
+<I><FONT COLOR="#C0C0C0">{----------------------------------------------------------------------------}</FONT></I>
+   PHash = ^Hash;
+   Hash = <B><FONT COLOR="#FFFFFF">object</FONT></B>
+           velikost_tabulky : integer;
+           vlozeno : integer;
+           prehesuj_pri : byte;
+           <B><FONT COLOR="#FFFFFF">constructor</FONT></B> Init( ivelikost_tabulky : integer;iprehesuj_pri : byte );
+           <B><FONT COLOR="#FFFFFF">procedure</FONT></B> Zatrid( Zaznam : PClen ); virtual;
+           <B><FONT COLOR="#FFFFFF">procedure</FONT></B> Vyndej( Min : PClen ); virtual;
+           <B><FONT COLOR="#FFFFFF">procedure</FONT></B> Smaz( Co : PClen ); virtual;
+           <B><FONT COLOR="#FFFFFF">function</FONT></B> Zaplneno : byte; virtual; <I><FONT COLOR="#C0C0C0">{ vraci v procentech 0 - 100 ) }</FONT></I>
+           <B><FONT COLOR="#FFFFFF">procedure</FONT></B> Prehesuj( velikost : integer ); virtual;
+           <B><FONT COLOR="#FFFFFF">destructor</FONT></B> Done;
+          <B><FONT COLOR="#FFFFFF">end</FONT></B>;
+<I><FONT COLOR="#C0C0C0">{----------------------------------------------------------------------------}</FONT></I>
+<B><FONT COLOR="#FFFFFF">var</FONT></B> tabulka : <B><FONT COLOR="#FFFFFF">array</FONT></B> [ 1..8000 ] <B><FONT COLOR="#FFFFFF">of</FONT></B> TabTyp;
+<I><FONT COLOR="#C0C0C0">{----------------------------------------------------------------------------}</FONT></I>
+<I><FONT COLOR="#C0C0C0">{ metody : }</FONT></I>
+<I><FONT COLOR="#C0C0C0">{----------------------------------------------------------------------------}</FONT></I>
+<B><FONT COLOR="#FFFFFF">constructor</FONT></B> Hash.Init( ivelikost_tabulky : integer;iprehesuj_pri : byte );
+ <B><FONT COLOR="#FFFFFF">begin</FONT></B>
+  velikost_tabulky := ivelikost_tabulky;
+  prehesuj_pri := iprehesuj_pri;
+  vlozeno := 0;
+ <B><FONT COLOR="#FFFFFF">end</FONT></B>;
+<I><FONT COLOR="#C0C0C0">{----------------------------------------------------------------------------}</FONT></I>
+<B><FONT COLOR="#FFFFFF">procedure</FONT></B> Hash.Zatrid( Zaznam : PClen );
+<B><FONT COLOR="#FFFFFF">var</FONT></B> klic        : integer;
+    pomoc,uzel  : PTabTyp;
+ <B><FONT COLOR="#FFFFFF">begin</FONT></B>
+  <I><FONT COLOR="#C0C0C0">{ zvolil jsem hasovaci funkci index = f(klic) = klic mod sirka_tabulky }</FONT></I>
+  klic :=  Zaznam^.Klic <B><FONT COLOR="#FFFFFF">mod</FONT></B> velikost_tabulky;
+  inc( vlozeno );
+
+  <B><FONT COLOR="#FFFFFF">if</FONT></B> tabulka[ klic ].zaznam = <B><FONT COLOR="#FFFFFF">nil</FONT></B> <B><FONT COLOR="#FFFFFF">then</FONT></B>
+   <B><FONT COLOR="#FFFFFF">begin</FONT></B>
+    tabulka[ klic ].zaznam := Zaznam;
+    tabulka[ klic ].pravy := <B><FONT COLOR="#FFFFFF">nil</FONT></B>;
+   <B><FONT COLOR="#FFFFFF">end</FONT></B>
+  <B><FONT COLOR="#FFFFFF">else</FONT></B>
+   <B><FONT COLOR="#FFFFFF">begin</FONT></B>
+    <I><FONT COLOR="#C0C0C0">{ musim najit misto kam zapojit - tridim od nejmensiho k nejvetsimu }</FONT></I>
+    <B><FONT COLOR="#FFFFFF">if</FONT></B> ( Zaznam^.klic &lt; tabulka[ klic ].zaznam^.klic) <B><FONT COLOR="#FFFFFF">then</FONT></B>
+     <B><FONT COLOR="#FFFFFF">begin</FONT></B>
+      <I><FONT COLOR="#C0C0C0">{ vse posunout }</FONT></I>
+      new( pomoc );
+      pomoc^ := tabulka[ klic ];
+      tabulka[ klic ].zaznam := Zaznam;
+      tabulka[ klic ].pravy := pomoc;
+     <B><FONT COLOR="#FFFFFF">end</FONT></B>
+    <B><FONT COLOR="#FFFFFF">else</FONT></B>
+     <B><FONT COLOR="#FFFFFF">begin</FONT></B>
+      pomoc := tabulka[ klic ].pravy;
+      <B><FONT COLOR="#FFFFFF">while</FONT></B> ( pomoc^.pravy &lt;&gt; <B><FONT COLOR="#FFFFFF">nil</FONT></B> ) <B><FONT COLOR="#FFFFFF">and</FONT></B>
+            ( Zaznam^.klic &lt; pomoc^.zaznam^.klic ) <B><FONT COLOR="#FFFFFF">do</FONT></B>
+        pomoc := pomoc^.pravy;<I><FONT COLOR="#C0C0C0">{ a jsem na konci seznamku }</FONT></I>
+
+      new( uzel );
+      uzel^ := pomoc^;
+      pomoc^.pravy := uzel;
+      pomoc^.zaznam := Zaznam;
+     <B><FONT COLOR="#FFFFFF">end</FONT></B>
+   <B><FONT COLOR="#FFFFFF">end</FONT></B>;
+
+  <B><FONT COLOR="#FFFFFF">if</FONT></B> Zaplneno &gt; prehesuj_pri <B><FONT COLOR="#FFFFFF">then</FONT></B> Prehesuj( ( velikost_tabulky + 1000 ) );
+
+ <B><FONT COLOR="#FFFFFF">end</FONT></B>;
+<I><FONT COLOR="#C0C0C0">{----------------------------------------------------------------------------}</FONT></I>
+<B><FONT COLOR="#FFFFFF">procedure</FONT></B> Hash.Vyndej( Min : PClen );
+ <B><FONT COLOR="#FFFFFF">begin</FONT></B>
+  <I><FONT COLOR="#C0C0C0">{ najde nejmensi prvek a vrati na nej pointer }</FONT></I>
+ <B><FONT COLOR="#FFFFFF">end</FONT></B>;
+<I><FONT COLOR="#C0C0C0">{----------------------------------------------------------------------------}</FONT></I>
+<B><FONT COLOR="#FFFFFF">procedure</FONT></B> Hash.Smaz( Co : PClen ); virtual;
+<B><FONT COLOR="#FFFFFF">var</FONT></B> index : integer;
+ <B><FONT COLOR="#FFFFFF">begin</FONT></B>
+  <I><FONT COLOR="#C0C0C0">{ vymaze prvek z tabulky na nejz mame pointer }</FONT></I>
+ <B><FONT COLOR="#FFFFFF">end</FONT></B>;
+<I><FONT COLOR="#C0C0C0">{----------------------------------------------------------------------------}</FONT></I>
+<B><FONT COLOR="#FFFFFF">function</FONT></B> Hash.Zaplneno : byte;
+<B><FONT COLOR="#FFFFFF">var</FONT></B> pomoc : real;
+ <B><FONT COLOR="#FFFFFF">begin</FONT></B>
+  inc( vlozeno );
+  Zaplneno := round(( vlozeno / velikost_tabulky ) * 100 );
+ <B><FONT COLOR="#FFFFFF">end</FONT></B>;
+<I><FONT COLOR="#C0C0C0">{----------------------------------------------------------------------------}</FONT></I>
+<B><FONT COLOR="#FFFFFF">procedure</FONT></B> Hash.Prehesuj( velikost : integer );
+ <B><FONT COLOR="#FFFFFF">begin</FONT></B>
+  <I><FONT COLOR="#C0C0C0">{ prehesuje stavajici tabulku do vetsi tabulky }</FONT></I>
+ <B><FONT COLOR="#FFFFFF">end</FONT></B>;
+<I><FONT COLOR="#C0C0C0">{----------------------------------------------------------------------------}</FONT></I>
+<B><FONT COLOR="#FFFFFF">destructor</FONT></B> Hash.Done;
+ <B><FONT COLOR="#FFFFFF">begin</FONT></B>
+  <I><FONT COLOR="#C0C0C0">{ zruseni objektu }</FONT></I>
+ <B><FONT COLOR="#FFFFFF">end</FONT></B>;
+<I><FONT COLOR="#C0C0C0">{----------------------------------------------------------------------------}</FONT></I>
+<B><FONT COLOR="#FFFFFF">begin</FONT></B>
+
+<B><FONT COLOR="#FFFFFF">end</FONT></B>.
+ </PRE>
+ </FONT>
+</BODY> 
+</HTML>

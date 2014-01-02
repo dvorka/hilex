@@ -1,0 +1,98 @@
+#---------------------------------------------------------------------------------
+#
+#                       Configuration file for HILEX
+#
+#                    Languague: HILEX configuration file
+#
+#                                  by Dvorka
+#
+#---------------------------------------------------------------------------------
+
+Setup( "TRANSLATION")
+{
+ Output         ="HTML_PAGE";   # HTML_PAGE or HTML_TABLE or NO_ENCAPS
+
+ CRLF           ="FALSE";       # add CRs to output ( Unix hates them )
+ HtmlOutput     ="TRUE";        # convert < to &lt; ...
+}
+
+#---------------------------------------------------------------------------------
+
+Setup( "ENCAPSULATION" )
+{
+ Face_font ="COURIER NEW";
+ Title     ="HILEX translated source";
+ BaseColor ="#000080";
+ BaseSize  ="+1";
+ BgColor   ="#606060";
+}
+
+#---------------------------------------------------------------------------------
+
+Element( "KEYWORDS" )
+{
+ Descr="([Dd][Ee][Ss][Cc][Rr])|([Oo][Uu][Tt][Pp][Uu][Tt])|";
+ Descr="([Ff][Aa][Cc][Ee]_[Ff][Oo][Nn][Tt])|([Tt][Ii][Tt][Ll][Ee])|";
+ Descr="([Bb][Aa][Ss][Ee][Cc][Oo][Ll][Oo][Rr])|";
+ Descr="([Bb][Aa][Ss][Ee][Ss][Ii][Zz][Ee])|([Bb][Gg][Cc][Oo][Ll][Oo][Rr])|";
+ Descr="([Rr][Aa][Ww]_[Bb][Ee][Gg])|([Rr][Aa][Ww]_[Ee][Nn][Dd])|";
+ Descr="([Cc][Oo][Ll][Oo][Rr])|([Ff][Oo][Nn][Tt])|([Ss][Ii][Zz][Ee])|";
+ Descr="([Bb][Oo][Ll][Dd])|([Uu][Nn][Dd][Ee][Rr][Ss][Cc][Oo][Rr][Ee])|";
+ Descr="([Ii][Tt][Aa][Ll][Ii][Cc])|([Bb][Aa][Cc][Kk][Gg][Rr][Oo][Uu][Nn][Dd])|";
+ Descr="([Ww][Ii][Dd][Tt][Hh])|([Cc][Rr][Ll][Ff])|";
+ Descr="([Hh][Tt][Mm][Ll][Oo][Uu][Tt][Pp][Uu][Tt])";
+
+ Action="ENCAPSULATE";
+
+ Color="#FFFF00";
+}
+
+#---------------------------------------------------------------------------------
+
+Element( "SYMBOL" )
+{
+ Descr="=|\{|\}|\(|\)|;";
+
+ Action="ENCAPSULATE";
+
+ Raw_beg="<FONT COLOR=\"#FFFFFF\">";
+ Raw_end="</FONT>";
+}
+
+#---------------------------------------------------------------------------------
+
+Element( "COMMENTS" )
+{
+ Descr="#[^\n]*\n";
+
+ Action="ENCAPSULATE";
+
+ COLOR="#C0C0C0";
+ ITALIC="TRUE";
+}
+
+#---------------------------------------------------------------------------------
+
+Element( "BLOCK IDF" )
+{
+ Descr="([Ee][Ll][Ee][Mm][Ee][Nn][Tt])|([Ss][Ee][Tt][Uu][Pp])";
+
+ Action="ENCAPSULATE";
+
+ Color="BLACK";
+ Underscore="TRUE";
+}
+
+#---------------------------------------------------------------------------------
+
+Element( "STRING" )
+{
+ Descr  ="\"(([^\"])|(\\\"))*\"";
+
+ Action="ENCAPSULATE";
+
+ # string uses default text color
+ Bold ="TRUE";
+}
+
+#---------------------------------------------------------------------------------

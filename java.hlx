@@ -1,0 +1,190 @@
+#---------------------------------------------------------------------------------
+#
+#                       Configuration file for HILEX
+#
+#                               Languague: Java
+#
+#                                  by Dvorka
+#
+#---------------------------------------------------------------------------------
+
+Setup( "TRANSLATION" )
+{
+ Output    ="HTML_PAGE";  # HTML_PAGE or NO_ENCAPS or HTML_TABLE
+
+ CRLF      ="FALSE";      # add CRs to output ( Unix LF, Dos CRLF )
+ HtmlOutput="TRUE";       # convert < to &lt; ...
+}
+
+#---------------------------------------------------------------------------------
+
+Setup( "ENCAPSULATION" )
+{
+ Face_Font ="COURIER NEW";
+ Title     ="HILEX translated source";
+ BaseColor ="#FFFF00";
+ BaseSize  ="+1";
+ BgColor   ="#000080";
+}
+
+#---------------------------------------------------------------------------------
+
+Element( "KEYWORDS" )
+{
+ Descr="(abstract)|(boolean)|(break)|(byte)|(byvalue)|(case)|(cast)|(catch)|";
+ Descr="(char)|(class)|(const)|(continue)|(default)|(do)|(double)|(else)|";
+ Descr="(extends)|(false)|(final)|(finally)|(float)|(for)|(future)|";
+ Descr="(generic)|(goto)|(if)|(implements)|(import)|(inner)|(instanceof)|";
+ Descr="(int)|(interface)|(long)|(native)|(new)|(null)|(operator)|(outer)|";
+ Descr="(package)|(private)|(protected)|(public)|(rest)|(return)|(short)|";
+ Descr="(static)|(super)|(switch)|(synchronized)|(this)|(throw)|(throws)|";
+ Descr="(transient)|(true)|(try)|(var)|(void)|(volatile)|(while)";
+
+ Action="ENCAPSULATE";
+
+ Color="#FFFFFF";
+ Bold ="TRUE";
+}
+
+#---------------------------------------------------------------------------------
+
+Element( "RESERVED METHODS" )
+{
+ Descr="(clone)|(equals)|(finalize)|(getClass)|(hashCode)|(notify)|";
+ Descr="(notifyAll)|(toString)|(wait)";
+
+ Action="ENCAPSULATE";
+
+ Color="#FFFFFF";
+ Bold ="TRUE";
+}
+
+#---------------------------------------------------------------------------------
+
+Element( "IDENTIFIER" )
+{
+ Descr  ="[A-Za-z_][A-Za-z_0-9]*";
+
+ Action="NO";
+
+ # no options -> not encapsulated -> has the color of the default text
+}
+
+#---------------------------------------------------------------------------------
+
+Element( "SYMBOL" )
+{
+ Descr  ="\.|;|,|:|-|=|^|&|\?|<|>|%|!|~|\+|/|\*|\[|\]|\{|\}|\||\(|\)";
+
+ Action="ENCAPSULATE";
+
+ Color="#FFFFFE";
+}
+
+#---------------------------------------------------------------------------------
+
+Element( "COMMENTS C STYLE" )
+{
+ Descr="/\*((\*+[^/])|([^\*]))*\*+/";
+
+ Action="ENCAPSULATE";
+
+ Color ="#C0C0C0";
+ Italic="TRUE";
+}
+
+#---------------------------------------------------------------------------------
+
+Element( "COMMENTS C++ STYLE" )
+{
+ Descr="//[^\n]*\n";
+
+ Action="ENCAPSULATE";
+
+ Color ="#C0C0C0";
+ Italic="TRUE";
+}
+
+#---------------------------------------------------------------------------------
+
+Element( "COMMENTS DOCS" )
+{
+ Descr="/\*\*((\*+[^/])|([^\*]))*\*+/";
+
+ Action="ENCAPSULATE";
+
+ Color ="#C0C0C0";
+ Italic="TRUE";
+}
+
+#---------------------------------------------------------------------------------
+
+Element( "STRING" )
+{
+ Descr="\"(([^\"])|(\\"))*\"";
+
+ Action="ENCAPSULATE";
+
+ Color="#00FFFF";
+}
+
+#---------------------------------------------------------------------------------
+
+Element( "UNICODE" )
+{
+ Descr="\\u[0-9a-fA-F]{1,4}";
+
+ Action="ENCAPSULATE";
+
+ Color="#00FFFF";
+}
+
+#---------------------------------------------------------------------------------
+
+Element( "CHARACTER CONSTANT" )
+{
+ Descr="'(.)|(\\.)'";
+
+ Action="ENCAPSULATE";
+
+ COLOR="#00FFFF";
+}
+
+#---------------------------------------------------------------------------------
+
+Element( "DECIMAL CONSTANT" )
+{
+ Descr="[0-9]+[Uu]?[Ll]?";
+
+ Action="ENCAPSULATE";
+
+ Color="#00FFFF";
+}
+
+#---------------------------------------------------------------------------------
+
+Element( "HEXA CONSTANT" )
+{
+ Descr="0[xX][0-9A-Fa-f]+";
+
+ Action="ENCAPSULATE";
+
+ Color="#00FFFF";
+}
+
+#---------------------------------------------------------------------------------
+
+Element( "FLOAT CONSTANT" )
+{
+ Descr="([0-9]+\.[0-9]*[fF]?[Ll]?)|([0-9]+[fF]?[Ll]?)|";
+ Descr="([0-9]+\.[0-9]*[Ee]-?\+?[0-9]+[fF]?[Ll]?)";
+
+ Action="ENCAPSULATE";
+
+ Color="#00FFFF";
+}
+
+#---------------------------------------------------------------------------------
+
+
+

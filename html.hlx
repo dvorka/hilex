@@ -1,0 +1,130 @@
+#---------------------------------------------------------------------------------
+#
+#                       Configuration file for HILEX
+#
+#                               Languague: HTML
+#
+#                                  by Dvorka
+#
+#---------------------------------------------------------------------------------
+
+Setup( "TRANSLATION" )
+{
+ Output    ="HTML_PAGE";  # HTML_PAGE or NO_ENCAPS or HTML_TABLE
+
+ CRLF      ="FALSE";      # add CRs to output ( Unix LF, Dos CRLF )
+ HtmlOutput="TRUE";       # convert < to &lt; ...
+}
+
+#---------------------------------------------------------------------------------
+
+Setup( "ENCAPSULATION" )
+{
+ Face_Font ="COURIER NEW";
+ Title     ="HILEX translated source";
+ BaseColor ="#FFFF00";
+ BaseSize  ="+1";
+ BgColor   ="#000080";
+}
+
+#---------------------------------------------------------------------------------
+
+Element( "COMMENTS" )
+{
+ Descr="<!--((-+[^>])|([^\-]))*-+>";
+
+ Color="#C0C0C0";
+ Italic="TRUE";
+
+ Action="ENCAPSULATE";
+}
+
+#----------------------------------------------------------------------------------
+
+Element( "TAGS GROUP1" )
+{
+ Descr="<([Hh][Tt][Mm][Ll])|(/[Hh][Tt][Mm][Ll])|";
+ Descr="([Bb][Oo][Dd][Yy][^>]*)|(/[Bb][Oo][Dd][Yy])>";
+
+ Color="#CC0000";
+ Bold="TRUE";
+
+ Action="ENCAPSULATE";
+}
+
+#----------------------------------------------------------------------------------
+
+Element( "TAGS GROUP2" )
+{
+ Descr="<([Hh][Ee][Aa][Dd])|(/[Hh][Ee][Aa][Dd])|";
+ Descr="([Ff][Oo][Nn][Tt][^>]*)|(/[Ff][Oo][Nn][Tt])|";
+ Descr="([Cc][Ee][Nn][Tt][Ee][Rr])|(/[Cc][Ee][Nn][Tt][Ee][Rr])>";
+
+ Color="#00FFFF";
+ Bold="TRUE";
+
+ Action="ENCAPSULATE";
+}
+
+#----------------------------------------------------------------------------------
+
+Element( "TAGS GROUP3" )
+{
+ Descr="<([Tt][Ii][Tt][Ll][Ee])|(/[Tt][Ii][Tt][Ll][Ee])|";
+ Descr="([Bb][Rr])>";
+
+ Color="#FFFFFF";
+ Bold="TRUE";
+
+ Action="ENCAPSULATE";
+}
+
+#----------------------------------------------------------------------------------
+
+Element( "TAGS GROUPIV" )
+{
+ Descr="<([Aa][^>]*)|(/[Aa])>";
+
+ Color="#00AA00";
+ Bold="TRUE";
+
+ Action="ENCAPSULATE";
+}
+
+#----------------------------------------------------------------------------------
+
+Element( "TAGS GROUP5" )
+{
+ Descr="<([Ii][Mm][Gg][^>]*)|(/[Ii][Mm][Gg])>";
+
+ Color="#CC00CC";
+ Bold="TRUE";
+
+ Action="ENCAPSULATE";
+}
+
+#---------------------------------------------------------------------------------
+
+Element( "TAGS - REST" )
+{
+ Descr="<[^>]+>";
+
+ Color="#00FF00";
+ Bold="TRUE";
+
+ Action="ENCAPSULATE";
+}
+
+#---------------------------------------------------------------------------------
+
+Element( "TEXT" )
+{
+ Descr  ="[^\n \t]";
+
+ Color="#FFFF00";
+
+ Action="ENCAPSULATE";
+}
+
+#---------------------------------------------------------------------------------
+
